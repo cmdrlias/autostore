@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.5.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'war'
+
+group = 'com.autostore'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
+    compile('org.springframework.boot:spring-boot-devtools')
+    compile('org.apache.commons:commons-lang3:3.8')
+    compile('org.apache.commons:commons-text:1.4')
+    compile('commons-io:commons-io:2.6')
+    compile('commons-beanutils:commons-beanutils:1.9.3')
+    compile('mysql:mysql-connector-java')
+    compile('joda-time:joda-time:2.9.9')
+    compile('org.flywaydb:flyway-core:5.2.4')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.security:spring-security-test')
+}
