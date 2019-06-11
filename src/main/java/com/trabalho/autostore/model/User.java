@@ -20,6 +20,9 @@ public class User implements Serializable {
     @Column(name="usr_name")
     private String usrName;
 
+    @Column(name="usr_alias")
+    private String usrAlias;
+
     @Column(name="usr_password")
     private String usrPassword;
 
@@ -47,5 +50,13 @@ public class User implements Serializable {
 
     public void setUsrName(String usrName) {
         this.usrName = usrName;
+    }
+
+    public String getUsrAlias() {
+        return usrAlias;
+    }
+
+    public void setUsrAlias(String usrAlias) {
+        this.usrAlias = usrAlias;
     }
 }

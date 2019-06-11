@@ -1,5 +1,6 @@
 package com.trabalho.autostore.web.dashboard;
 
+import com.trabalho.autostore.model.User;
 import com.trabalho.autostore.service.UserService;
 import com.trabalho.autostore.web.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping("/dashboard")
@@ -23,9 +23,12 @@ public class DashboardController extends BaseController {
     @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST})
     public String index(HttpSession session, Model model) {
 
+        final User user = getLoggedUser(session);
+
+        model.addAttribute("user", user);
         model.addAttribute("dashboardSection", Boolean.TRUE);
         model.addAttribute("pageTitle", "Dashboard");
-        return "login";
+        return "dashboard";
     }
 
     @RequestMapping(value = { "/save-comment" }, method = RequestMethod.POST)

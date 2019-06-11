@@ -12,13 +12,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.time.Duration;
 import java.util.Collection;
 
 public class BaseController {
+
+    private static final String MODAL_SUCCESS = "success";
+    private static final String MODAL_WARNING = "warning";
+    private static final String MODAL_ERROR = "error";
+    private static final String MODAL_INFO = "info";
 
     @Lazy
     @Autowired
@@ -104,4 +111,59 @@ public class BaseController {
         }
         return false;
     }
+
+    public void setModalSuccess(String text, Model model) {
+        setModal(getMessage("message.success"), text, model, MODAL_SUCCESS);
+    }
+
+    public void setModalWarning(String text, Model model) {
+        setModal(getMessage("message.warning"), text, model, MODAL_WARNING);
+    }
+
+    public void setModalError(String text, Model model) {
+        setModal(getMessage("message.error"), text, model, MODAL_ERROR);
+    }
+
+    public void setModalInfo(String text, Model model) {
+        setModal(getMessage("message.info"), text, model, MODAL_INFO);
+    }
+
+    public void setModal(String title, String text, Model model) {
+        setModal(title, text, model, null);
+    }
+
+    private void setModal(String title, String text, Model model, String icone) {
+        model.addAttribute("modalTitle", title);
+        model.addAttribute("modalText", text);
+        model.addAttribute("modalIcon", icone);
+        model.addAttribute("modalButton", getMessage("label.button.close"));
+    }
+
+    public void setModalSuccess(String text, RedirectAttributes redirectAttributes) {
+        setModal(getMessage("message.success"), text, redirectAttributes, MODAL_SUCCESS);
+    }
+
+    public void setModalWarning(String text, RedirectAttributes redirectAttributes) {
+        setModal(getMessage("message.warning"), text, redirectAttributes, MODAL_WARNING);
+    }
+
+    public void setModalError(String text, RedirectAttributes redirectAttributes) {
+        setModal(getMessage("message.error"), text, redirectAttributes, MODAL_ERROR);
+    }
+
+    public void setModalInfo(String text, RedirectAttributes redirectAttributes) {
+        setModal(getMessage("message.info"), text, redirectAttributes, MODAL_INFO);
+    }
+
+    public void setModal(String title, String text, RedirectAttributes redirectAttributes) {
+        setModal(title, text, redirectAttributes, null);
+    }
+
+    private void setModal(String title, String text, RedirectAttributes redirectAttributes, String icone) {
+        redirectAttributes.addFlashAttribute("modalTitle", title);
+        redirectAttributes.addFlashAttribute("modalText", text);
+        redirectAttributes.addFlashAttribute("modalIcon", icone);
+        redirectAttributes.addFlashAttribute("modalButton", getMessage("label.button.close"));
+    }
+
 }

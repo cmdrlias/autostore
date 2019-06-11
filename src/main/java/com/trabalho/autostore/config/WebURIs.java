@@ -7,6 +7,8 @@ public interface WebURIs {
             "/my-logout",
             "/expired",
             "/js/messages",
+            "/cadastrar",
+            "/save"
     };
 
     public static final String[] PRIVATE_URI_GENERAL = {
