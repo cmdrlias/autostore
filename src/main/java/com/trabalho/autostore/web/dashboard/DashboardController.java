@@ -25,6 +25,7 @@ public class DashboardController extends BaseController {
 
         final User user = getLoggedUser(session);
 
+        model.addAttribute("userCount", userService.count());
         model.addAttribute("user", user);
         model.addAttribute("dashboardSection", Boolean.TRUE);
         model.addAttribute("pageTitle", "Dashboard");

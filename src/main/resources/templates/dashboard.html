@@ -2,22 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/principal-fragment}">
-<div class="container" layout:fragment="content">
     <div class="content" layout:fragment="content">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <div class="card-header card-header-warning card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">weekend</i>
+                            <i class="material-icons">people</i>
                         </div>
-                        <p class="card-category">Bookings</p>
-                        <h3 class="card-title">184</h3>
+                        <p class="card-category">[[#{message.users.count}]]</p>
+                        <h3 class="card-title">[[${userCount}]]</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="#pablo">Get More Space...</a>
+                            <i class="material-icons">person_add</i>
+                            <a th:href="@{/cadastrar}">[[#{message.title.users}]]</a>
                         </div>
                     </div>
                 </div>
@@ -26,14 +25,14 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">equalizer</i>
+                            <i class="material-icons">directions_car</i>
                         </div>
-                        <p class="card-category">Website Visits</p>
-                        <h3 class="card-title">75.521</h3>
+                        <p class="card-category">[[#{message.vehicles.count}]]</p>
+                        <h3 class="card-title">3</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                            <i class="material-icons">date_range</i> [[#{message.date.general}]]
                         </div>
                     </div>
                 </div>
@@ -42,14 +41,14 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">store</i>
+                            <i class="material-icons">card_travel</i>
                         </div>
-                        <p class="card-category">Revenue</p>
-                        <h3 class="card-title">$34,245</h3>
+                        <p class="card-category">[[#{message.vehicles.rented.count}]]</p>
+                        <h3 class="card-title">1</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            <i class="material-icons">date_range</i> [[#{message.date.general}]]
                         </div>
                     </div>
                 </div>
@@ -58,19 +57,18 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-info card-header-icon">
                         <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
+                            <i class="material-icons">local_car_wash</i>
                         </div>
-                        <p class="card-category">Followers</p>
-                        <h3 class="card-title">+245</h3>
+                        <p class="card-category">[[#{message.vehicles.broken.count}]]</p>
+                        <h3 class="card-title">2</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
+                            <i class="material-icons">date_range</i> [[#{message.date.general}]]
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </html>

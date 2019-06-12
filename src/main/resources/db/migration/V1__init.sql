@@ -10,6 +10,7 @@ create table vehicle (
     vcl_code INT NOT NULL AUTO_INCREMENT,
     vcl_name VARCHAR(80) NOT NULL,
     vcl_plaque VARCHAR(8) NOT NULL,
+    vlc_photo BLOB,
     PRIMARY KEY (vcl_code)
 );
 
@@ -51,3 +52,7 @@ alter table vehicle_status add constraint fk_r_04 foreign key (sts_code)
     references status (sts_code) on delete restrict on update restrict;
 
 insert into user (usr_name, usr_alias, usr_password) VALUES ("cmdrlias", "Larissa", "$2a$10$2XmoryKEpL8jrfy2anY4Wun.TseVwq8Dnxf/.xb5sUen5gFv0nJrO");
+
+insert into group_t (grp_name, grp_desc) values ("A", "Econômicos");
+insert into group_t (grp_name, grp_desc) values ("B", "Intermediário");
+insert into group_t (grp_name, grp_desc) values ("C", "SUV");

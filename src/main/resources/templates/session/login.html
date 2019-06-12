@@ -18,7 +18,7 @@
                                   <i class="material-icons">face</i>
                                 </span>
                               </div>
-                              <input type="text" class="form-control" id="username" name="username" placeholder="Username...">
+                              <input type="text" class="form-control" id="username" name="username" th:placeholder="#{placeholder.login.username}">
                             </div>
                           </span>
                           <span class="bmd-form-group">
@@ -28,12 +28,12 @@
                                   <i class="material-icons">lock_outline</i>
                                 </span>
                               </div>
-                              <input type="password" class="form-control" id="password" name="password" placeholder="Password...">
+                              <input type="password" class="form-control" id="password" name="password" th:placeholder="#{placehoder.login.password}">
                             </div>
                           </span>
                         </div>
                         <div class="card-footer justify-content-center">
-                            <button th:type="submit" class="btn btn-rose btn-link btn-lg">Entrar!</button>
+                            <button th:type="submit" class="btn btn-rose btn-link btn-lg">[[#{label.login.button}]]</button>
                         </div>
                     </div>
                 </form>

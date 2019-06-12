@@ -47,4 +47,9 @@ public class UserServiceImpl extends BaseService implements UserService {
     public void delete(User user) {
         userDao.delete(user);
     }
+
+    @Override
+    public long count() {
+        return userDao.count();
+    }
 }
