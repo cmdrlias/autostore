@@ -13,16 +13,15 @@ public interface WebURIs {
 
     public static final String[] PRIVATE_URI_GENERAL = {
             "/dashboard",
-    };
-
-    public static final String[] PRIVATE_URI_SYSTEM_ADMIN = {
-            "/dashboard/save-comment",
             "/users",
             "/users/list",
-            "/users/add",
-            "/users/save",
-            "/users/profile",
-            "/users/update",
-            "/users/delete"
+            "/users/delete",
+            "/users/edit",
+            "/vehicles",
+            "/vehicles/list",
+            "/vehicles/add",
+            "/vehicles/edit",
+            "/vehicles/save",
+            "/vehicles/delete"
     };
 }

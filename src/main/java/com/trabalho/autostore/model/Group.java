@@ -3,12 +3,13 @@ package com.trabalho.autostore.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name="group_t")
 @NamedQuery(name="Group.findAll", query="SELECT g FROM Group g")
-public class Group {
+public class Group implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id

@@ -1,10 +1,12 @@
 package com.trabalho.autostore.model;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Blob;
+import java.sql.SQLException;
 
 @Entity
 @Table(name="vehicle")
@@ -18,7 +20,7 @@ public class Vehicle implements Serializable {
     @Column(name="vcl_code")
     private int vclCode;
 
-    @Column(name="vlc_name")
+    @Column(name="vcl_name")
     private String vclName;
 
     @Column(name="vcl_plaque")
@@ -32,6 +34,12 @@ public class Vehicle implements Serializable {
             joinColumns={@JoinColumn(name="vcl_code")},
             inverseJoinColumns={@JoinColumn(name="grp_code")})
     private Group group;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinTable(name="vehicle_status",
+            joinColumns={@JoinColumn(name="vcl_code")},
+            inverseJoinColumns={@JoinColumn(name="sts_code")})
+    private Status status;
 
     public Vehicle() {}
 
@@ -73,5 +81,24 @@ public class Vehicle implements Serializable {
 
     public void setVclPhoto(Blob vclPhoto) {
         this.vclPhoto = vclPhoto;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getBase64Photo() {
+        try {
+            int blobLength = (int) vclPhoto.length();
+            byte[] blobAsBytes = vclPhoto.getBytes(1, blobLength);
+
+            return "data:image/png;base64," + Base64.encodeBase64String(blobAsBytes);
+        } catch (SQLException ex) {
+            return "" + ex;
+        }
     }
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/principal-fragment}">
+    <div class="content" layout:fragment="content">
+        <div class="row">
+            <div class="col-sm" th:each="v : ${vehicles}">
+
+                <div class="card card-blog">
+                    <div class="card-header card-header-image">
+                        <a href="#pablo">
+                            <img class="img" th:src="${v.getBase64Photo()}">
+                            <div class="card-title">
+                                [[${v.vclName}]]
+                            </div>
+                        </a>
+                        <div class="colored-shadow" style="background-image: url(&quot;/img/examples/card-blog1.jpg&quot;); opacity: 1;"></div></div>
+                    <div class="card-body">
+                        <h6 class="card-category text-info">Fashion</h6>
+                        <p class="card-description">
+                            Placa: [[${v.vclPlaque}]]
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</html>

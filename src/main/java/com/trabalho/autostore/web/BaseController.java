@@ -61,7 +61,7 @@ public class BaseController {
     public String getUserName(HttpSession session) {
         final User user = getLoggedUser(session);
         if (user != null) {
-            return user.getUsrName();
+            return user.getUsrAlias();
         }
         return getPrincipal();
     }
