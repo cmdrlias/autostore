@@ -5,7 +5,6 @@
     <div class="content" layout:fragment="content">
         <div class="row">
             <div class="col-sm-4" th:each="v : ${vehicles}">
-
                 <div class="card card-blog">
                     <div class="card-header card-header-image">
                         <a href="#pablo">
@@ -29,13 +28,16 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <a href="/edit" class="btn btn-just-icon btn-link btn-info"><i class="material-icons">edit</i></a>
-                        <a href="/details" class="btn btn-just-icon btn-link btn-success"><i class="material-icons">info</i></a>
-                        <a href="/remove" class="btn btn-just-icon btn-link btn-danger"><i class="material-icons">delete_outline</i></a>
+                        <a th:href="@{edit}" class="btn btn-just-icon btn-link btn-info"><i class="material-icons">edit</i></a>
+                        <a th:href="@{details}" class="btn btn-just-icon btn-link btn-success"><i class="material-icons">info</i></a>
+                        <a th:href="@{remove}" class="btn btn-just-icon btn-link btn-danger"><i class="material-icons">delete_outline</i></a>
                     </div>
                 </div>
-
             </div>
         </div>
+        <a th:href="@{add}" class="btn btn-rose btn-round btn-fab btn-lg floating-btn">
+            <i class="material-icons">add</i>
+            <div class="ripple-container"></div>
+        </a>
     </div>
 </html>

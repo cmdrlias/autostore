@@ -16,7 +16,7 @@ public class Group implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     @Column(name="grp_code")
-    private int vclCode;
+    private int grpCode;
 
     @Column(name="grp_name")
     private char grpName;
@@ -32,12 +32,12 @@ public class Group implements Serializable {
 
     public Group() {}
 
-    public int getVclCode() {
-        return vclCode;
+    public int getGrpCode() {
+        return grpCode;
     }
 
-    public void setVclCode(int vclCode) {
-        this.vclCode = vclCode;
+    public void setGrpCode(int vclCode) {
+        this.grpCode = vclCode;
     }
 
     public char getGrpName() {

@@ -7,7 +7,7 @@ public interface WebURIs {
             "/my-logout",
             "/expired",
             "/js/messages",
-            "/cadastrar",
+            "/add",
             "/save"
     };
 

@@ -1,5 +1,6 @@
 package com.trabalho.autostore.web.session;
 
+import com.trabalho.autostore.model.Group;
 import com.trabalho.autostore.model.User;
 import com.trabalho.autostore.service.UserService;
 import com.trabalho.autostore.web.BaseController;
@@ -43,7 +44,7 @@ public class LoginController extends BaseController {
 
     }
 
-    @RequestMapping(value = { "/cadastrar" })
+    @RequestMapping(value = { "/add" })
     public String add(Model model) {
         model.addAttribute("signinSection", Boolean.TRUE);
         model.addAttribute("pageTitle","Cadastrar");
