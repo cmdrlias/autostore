@@ -6,18 +6,25 @@ import com.trabalho.autostore.model.Vehicle;
 import com.trabalho.autostore.service.VehicleService;
 import com.trabalho.autostore.web.BaseController;
 import org.apache.commons.io.IOUtils;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,13 +61,36 @@ public class VehicleController extends BaseController {
         return "vehicles/add";
     }
 
-    @RequestMapping(value = { "/save" })
-    public String save(HttpServletRequest request, Model model, HttpSession session) throws ServletException, IOException {
+    @RequestMapping(value = { "/save" }, method = RequestMethod.POST, headers={"content-type=multipart/form-data"})
+    public String save(HttpServletRequest request, Model model, HttpSession session, @RequestParam("vcl_photo") MultipartFile file) throws IOException, SQLException {
         String vclName = request.getParameter("vcl_name");
         String vclPlaque = request.getParameter("vcl_plaque");
         String vclGroupCode = request.getParameter("vcl_group");
         String vclStatusCode = request.getParameter("vcl_status");
-        String vclPhotoName = request.getParameter("vcl_photo");
+
+        Blob vclPhoto = new SerialBlob(file.getBytes());
+        Vehicle v = new Vehicle();
+
+        v.setVclName(vclName);
+        v.setVclPlaque(vclPlaque);
+        v.setGroup(vehicleService.findGrpByCode(Integer.parseInt(vclGroupCode)));
+        v.setStatus(vehicleService.findStsByCode(Integer.parseInt(vclStatusCode)));
+        v.setVclPhoto(vclPhoto);
+
+        vehicleService.add(v);
+
+        setModalSuccess(getMessage("message.vehicles.success.add"), model);
+
+        return list(session, model);
+    }
+
+    @RequestMapping(value = { "/delete" })
+    public String delete(@RequestParam(value="id", required=true) Integer vclCode, HttpServletRequest request, Model model, HttpSession session) {
+        Vehicle vehicle = vehicleService.findByVclCode(vclCode);
+
+        vehicleService.delete(vehicle);
+
+        setModalSuccess(getMessage("message.vehicles.success.remove"), model);
 
         return list(session, model);
     }

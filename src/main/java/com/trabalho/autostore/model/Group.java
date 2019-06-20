@@ -24,7 +24,7 @@ public class Group implements Serializable {
     @Column(name="grp_desc")
     private String grpDesc;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinTable(name="vehicle_group",
             joinColumns={@JoinColumn(name="grp_code")},
             inverseJoinColumns={@JoinColumn(name="vcl_code")})

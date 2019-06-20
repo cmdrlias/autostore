@@ -29,13 +29,13 @@ public class Vehicle implements Serializable {
     @Column(name="vcl_photo")
     private Blob vclPhoto;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinTable(name="vehicle_group",
             joinColumns={@JoinColumn(name="vcl_code")},
             inverseJoinColumns={@JoinColumn(name="grp_code")})
     private Group group;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinTable(name="vehicle_status",
             joinColumns={@JoinColumn(name="vcl_code")},
             inverseJoinColumns={@JoinColumn(name="sts_code")})
@@ -95,7 +95,6 @@ public class Vehicle implements Serializable {
         try {
             int blobLength = (int) vclPhoto.length();
             byte[] blobAsBytes = vclPhoto.getBytes(1, blobLength);
-
             return "data:image/png;base64," + Base64.encodeBase64String(blobAsBytes);
         } catch (SQLException ex) {
             return "" + ex;

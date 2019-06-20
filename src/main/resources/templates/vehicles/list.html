@@ -4,16 +4,21 @@
       layout:decorate="~{fragments/principal-fragment}">
     <div class="content" layout:fragment="content">
         <div class="row">
+            <div class="col-sm text-right">
+                <a th:href="@{add}" class="btn btn-rose">[[#{page.title.vehicles.add }]]</a>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-4" th:each="v : ${vehicles}">
                 <div class="card card-blog">
-                    <div class="card-header card-header-image">
+                    <div class="card-header card-header-image justify-content-center text-center">
                         <a href="#pablo">
                             <img class="img" th:src="${v.getBase64Photo()}">
                             <div class="card-title" style="text-shadow: 1px 1px 1px #000">
                                 [[${v.vclName}]]
                             </div>
                         </a>
-                        <div class="colored-shadow"></div></div>
+                    </div>
                     <div class="card-body">
                         <h6 class="card-category text-info">
                             [[${v.getGroup().grpDesc}]] ([[${v.getGroup().grpName}]])
@@ -28,16 +33,12 @@
                         </p>
                     </div>
                     <div class="card-footer">
-                        <a th:href="@{edit}" class="btn btn-just-icon btn-link btn-info"><i class="material-icons">edit</i></a>
-                        <a th:href="@{details}" class="btn btn-just-icon btn-link btn-success"><i class="material-icons">info</i></a>
-                        <a th:href="@{remove}" class="btn btn-just-icon btn-link btn-danger"><i class="material-icons">delete_outline</i></a>
+                        <a th:href="@{edit(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-info"><i class="material-icons">edit</i></a>
+                        <a th:href="@{details(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-success"><i class="material-icons">info</i></a>
+                        <a th:href="@{delete(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-danger"><i class="material-icons">delete_outline</i></a>
                     </div>
                 </div>
             </div>
         </div>
-        <a th:href="@{add}" class="btn btn-rose btn-round btn-fab btn-lg floating-btn">
-            <i class="material-icons">add</i>
-            <div class="ripple-container"></div>
-        </a>
     </div>
 </html>

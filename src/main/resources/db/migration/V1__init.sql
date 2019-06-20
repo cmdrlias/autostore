@@ -17,7 +17,7 @@ create table vehicle (
 create table group_t (
     grp_code INT NOT NULL AUTO_INCREMENT,
     grp_name CHAR NOT NULL,
-    grp_desc VARCHAR(20) NOT NULL,
+    grp_desc VARCHAR(80) NOT NULL,
     PRIMARY KEY (grp_code)
 );
 
@@ -53,9 +53,12 @@ alter table vehicle_status add constraint fk_r_04 foreign key (sts_code)
 
 insert into user (usr_name, usr_alias, usr_password) VALUES ("cmdrlias", "Larissa", "$2a$10$2XmoryKEpL8jrfy2anY4Wun.TseVwq8Dnxf/.xb5sUen5gFv0nJrO");
 
-insert into group_t (grp_name, grp_desc) values ("A", "Econômico");
-insert into group_t (grp_name, grp_desc) values ("B", "SUV");
-insert into group_t (grp_name, grp_desc) values ("C", "Luxo");
+insert into group_t (grp_name, grp_desc) values ("A", "Automóvel - Econômico");
+insert into group_t (grp_name, grp_desc) values ("B", "Automóvel - SUV");
+insert into group_t (grp_name, grp_desc) values ("C", "Automóvel - Luxo");
+insert into group_t (grp_name, grp_desc) values ("D", "Motocicleta");
+insert into group_t (grp_name, grp_desc) values ("E", "Avião");
+insert into group_t (grp_name, grp_desc) values ("F", "Trem");
 
 insert into status (sts_name) values ("Disponível");
 insert into status (sts_name) values ("Locado");

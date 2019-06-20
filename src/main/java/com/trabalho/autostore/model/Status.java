@@ -21,7 +21,7 @@ public class Status implements Serializable {
     @Column(name="sts_name")
     private String stsName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     @JoinTable(name="vehicle_status",
             joinColumns={@JoinColumn(name="sts_code")},
             inverseJoinColumns={@JoinColumn(name="vcl_code")})

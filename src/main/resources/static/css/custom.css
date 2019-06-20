@@ -1,6 +1,12 @@
-.floating-btn {
-    position: fixed;
-    z-index: 9000;
-    left: 51em;
-    bottom: -4em;
+.card-header .img {
+    min-height: 12em !important;
+    max-height: 12em !important;
+    width: auto !important;
+    max-width: 20em !important;
+    box-shadow: none !important;
+}
+
+.card-header.card-header-image {
+    background-color: #fff;
+    box-shadow: 0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
