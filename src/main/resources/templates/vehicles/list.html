@@ -4,6 +4,18 @@
       layout:decorate="~{fragments/principal-fragment}">
     <div class="content" layout:fragment="content">
         <div class="row">
+            <form class="form-search form" method="get" th:action="@{search}" style="width: 80% !important">
+                <div class="col-sm">
+                    <div class="input-group no-border">
+                        <input type="text" id="searchbar" name="searchbar" class="form-control"
+                               placeholder="pesquise por nome, marca, placa, grupo ou status...">
+                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                            <i class="material-icons">search</i>
+                            <div class="ripple-container"></div>
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div class="col-sm text-right">
                 <a th:href="@{add}" class="btn btn-rose">[[#{page.title.vehicles.add }]]</a>
             </div>

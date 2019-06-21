@@ -22,6 +22,7 @@ public interface WebURIs {
             "/vehicles/add",
             "/vehicles/edit",
             "/vehicles/save",
-            "/vehicles/delete"
+            "/vehicles/delete",
+            "/vehicles/search"
     };
 }

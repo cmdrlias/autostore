@@ -2,6 +2,7 @@ package com.trabalho.autostore.model;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -40,6 +41,9 @@ public class Vehicle implements Serializable {
             joinColumns={@JoinColumn(name="vcl_code")},
             inverseJoinColumns={@JoinColumn(name="sts_code")})
     private Status status;
+
+    @Transient
+    private MultipartFile basePhoto;
 
     public Vehicle() {}
 
@@ -99,5 +103,13 @@ public class Vehicle implements Serializable {
         } catch (SQLException ex) {
             return "" + ex;
         }
+    }
+
+    public MultipartFile getBasePhoto() {
+        return basePhoto;
+    }
+
+    public void setBasePhoto(MultipartFile basePhoto) {
+        this.basePhoto = basePhoto;
     }
 }
