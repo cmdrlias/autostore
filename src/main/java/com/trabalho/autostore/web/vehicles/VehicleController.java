@@ -29,15 +29,28 @@ public class VehicleController extends BaseController {
     @Autowired
     VehicleService vehicleService;
 
-    @RequestMapping(value = { "/list" })
+    @RequestMapping(value = { "/list" }, method = RequestMethod.GET)
     public String list(HttpSession session, Model model, HttpServletRequest request) {
         List<Vehicle> vehicles = vehicleService.findAll();
 
+        model.addAttribute("details", false);
         model.addAttribute("vehicles", vehicles);
         model.addAttribute("vehicleSection", Boolean.TRUE);
         model.addAttribute("pageTitle", getMessage("page.title.vehicles"));
 
         return "vehicles/list";
+    }
+
+    @RequestMapping(value = {"/details"}, method = RequestMethod.GET)
+    public String details(@RequestParam(value="id", required=true) Integer vclCode, HttpSession session, Model model, HttpServletRequest request) {
+        Vehicle vehicle = vehicleService.findByVclCode(vclCode);
+
+        model.addAttribute("vehicle", vehicle);
+        model.addAttribute("details", true);
+        model.addAttribute("vehicleSection", Boolean.TRUE);
+        model.addAttribute("pageTitle", getMessage("page.title.vehicles"));
+
+        return list(session, model, request);
     }
 
     @RequestMapping(value = { "/search" })

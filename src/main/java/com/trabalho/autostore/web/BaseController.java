@@ -165,5 +165,4 @@ public class BaseController {
         redirectAttributes.addFlashAttribute("modalIcon", icone);
         redirectAttributes.addFlashAttribute("modalButton", getMessage("label.button.close"));
     }
-
 }

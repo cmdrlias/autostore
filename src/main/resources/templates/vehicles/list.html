@@ -46,8 +46,27 @@
                     </div>
                     <div class="card-footer">
                         <a th:href="@{edit(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-info"><i class="material-icons">edit</i></a>
-                        <a th:href="@{details(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-success"><i class="material-icons">info</i></a>
+                        <a th:href="@{details(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-success" data-toggle="modal" data-target="#myModal"><i class="material-icons">info</i></a>
                         <a th:href="@{delete(id=${v.vclCode})}" class="btn btn-just-icon btn-link btn-danger"><i class="material-icons">delete_outline</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" onclick="location.href='list'">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="card-header card-header-primary text-center">
+                        <button onclick="location.href='list'" type="button" class="close"><i class="material-icons">clear</i></button>
+                        <img class="img" th:src="${vehicle.getBase64Photo()}">
+                        </div>
+                    </div>
+                    <div class="modal-body" style="background-color: #fff !important">
+                        <span class="badge badge-pill badge-success" th:if="${vehicle.getStatus().stsCode} == 1">Disponível</span>
+                        <span class="badge badge-pill badge-secondary" th:if="${vehicle.getStatus().stsCode} == 2">Locado</span>
+                        <span class="badge badge-pill badge-danger" th:if="${vehicle.getStatus().stsCode} == 3">Oficina</span>
+                        <h4 class="modal-title">[[${vehicle.vclName}]]</h4>
+                        <p>[[${vehicle.vclPlaque}]]</p>
+                        <p>[[${vehicle.getGroup().grpDesc}]] ([[${vehicle.getGroup().grpName}]])</p>
                     </div>
                 </div>
             </div>
